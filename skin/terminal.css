@@ -1,0 +1,13 @@
+* {
+    text-shadow: none !important;
+}
+
+html body {
+    font-family: "DejaVu Sans Mono";
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+body #wrapper, body .terminal, body .bg-color-256 {
+    background: #2B303B;
+}

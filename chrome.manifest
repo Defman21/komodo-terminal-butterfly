@@ -1,0 +1,3 @@
+content koterminal content/
+skin koterminal classic/1.0 skin/
+overlay chrome://komodo/content/komodo.xul chrome://koterminal/content/komodo.xul
