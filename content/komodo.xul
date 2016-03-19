@@ -17,8 +17,7 @@
     <ko-pane id="workspace_bottom_area">
         <browser type="content-targetable" id="terminal-widget"
                  label="Terminal"
-                 src="http://localhost:57575/"
-                 icon="chrome://icomoon/skin/icons/console.png"/>
+                 src="chrome://koterminal/content/widget.xul"/>
     </ko-pane>
 
 </overlay>

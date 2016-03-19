@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- Copyright (c) 2000-2016 ActiveState Software Inc.
+     See the file LICENSE.txt for licensing information. -->
+<!DOCTYPE overlay PUBLIC "-//MOZILLA//DTD XUL V1.0//EN" "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" [
+  <!ENTITY % komodoDTD SYSTEM "chrome://komodo/locale/komodo.dtd">
+  %komodoDTD;
+  <!ENTITY % komodoDTD.INTERNAL SYSTEM "chrome://komodo/locale/komodo-internal.dtd">
+  %komodoDTD.INTERNAL;
+  <!ENTITY % komodoDTD.SCC SYSTEM "chrome://komodo/locale/scc.dtd">
+  %komodoDTD.SCC;
+]>
+<?xml-stylesheet href="less://komodo/skin/global/global.less" type="text/css"?>
+
+<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    
+    <script src="chrome://koterminal/content/widget.js"
+            type="application/x-javascript;version=1.7"/>
+    
+    <tabbox id="terminal-tabs" class="embedded tabbed-view" flex="1">
+        
+        <tabs class="widgetToolbarWrap" type="scrollable"/>
+        <tabpanels flex="1"/>
+        
+    </tabbox>
+    
+</page>

@@ -1,0 +1,21 @@
+[submodule "pylib/backports_abc"]
+	path = pylib/backports_abc
+	url = https://github.com/cython/backports_abc.git
+[submodule "pylib/python-backports.ssl-match-hostname"]
+	path = pylib/python-backports.ssl-match-hostname
+	url = https://github.com/sbadia/python-backports.ssl-match-hostname.git
+[submodule "pylib/butterfly"]
+	path = pylib/butterfly
+	url = https://github.com/Naatan/butterfly.git
+[submodule "pylib/python-certifi"]
+	path = pylib/python-certifi
+	url = https://github.com/certifi/python-certifi.git
+[submodule "pylib/singledispatch"]
+	path = pylib/singledispatch
+	url = https://github.com/ambv/singledispatch.git
+[submodule "pylib/tornado"]
+	path = pylib/tornado
+	url = https://github.com/tornadoweb/tornado.git
+[submodule "pylib/tornado-systemd"]
+	path = pylib/tornado-systemd
+	url = https://github.com/paradoxxxzero/tornado-systemd.git

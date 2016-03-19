@@ -6,56 +6,44 @@ if (typeof(ko) == 'undefined')
 ko.terminal = new function()
 {
     const { classes: Cc, interfaces: Ci, utils: Cu } = Components;
-    const { NetUtil } = Cu.import("resource://gre/modules/NetUtil.jsm", {});
 
-    var browser;
+    var process;
+    var log = require("ko/logging").getLogger("ko-terminal");
+    
+    this.process = process;
 
     this.init = () =>
     {
-        browser = document.getElementById('terminal-widget');
-        if (browser.contentDocument.readyState !== 'complete')
-            return setTimeout(this.init.bind(this), 100);
-
-        this.loadStyleSheet();
+        var koFile = require("ko/file");
+        var koDirSvc = Cc["@activestate.com/koDirs;1"].getService();
+        var pythonExe = koDirSvc.pythonExe;
+        var pythonLib = koFile.join(koFile.dirname(pythonExe), "..", "lib", "python2.7");
+        
+        var koResolve = Cc["@activestate.com/koResolve;1"]
+                                .getService(Ci.koIResolve);
+        var addonPath = koResolve.uriToPath("chrome://koterminal/content/terminal.js");
+        addonPath = koFile.join(koFile.dirname(addonPath), '..');
+        
+        var libDir = koFile.join(addonPath, 'pylib');
+        var butterflyDir = koFile.join(libDir, 'butterfly');
+        var shell = require("ko/shell");
+        
+        var env = shell.getEnv();
+        env.PYTHONPATH = ["", pythonLib];
+        env.PYTHONPATH.push(koFile.join(libDir, "tornado"));
+        env.PYTHONPATH.push(koFile.join(libDir, "tornado-systemd"));
+        env.PYTHONPATH.push(koFile.join(libDir, "backports_abc"));
+        env.PYTHONPATH.push(koFile.join(libDir, "singledispatch"));
+        env.PYTHONPATH.push(koFile.join(libDir, "python-certifi"));
+        env.PYTHONPATH.push(koFile.join(libDir, "python-backports.ssl-match-hostname", "src"));
+        env.PYTHONPATH = env.PYTHONPATH.join(":");
+        
+        process = shell.run(pythonExe, [koFile.join(butterflyDir, 'butterfly.server.py'), '--unsecure'], {cwd: butterflyDir, env: env});
+        
+        process.stdout.on('data', log.debug);
+        process.stderr.on('data', log.error);
 
     };
-
-    // Fix ctrl+shift+c and ctrl+shift+v not working due to a bug in butterfly
-    this.forceClipboard = () =>
-    {
-        browser.contentWindow.addEventListener("keypress", (e) =>
-        {
-            if (e.shiftKey && e.ctrlKey && e.which == 67) // ctrl+shift+c
-            {
-                var selText = browser.contentWindow.getSelection().toString();
-                xtk.clipboard.setText(selText);
-            }
-            else if (e.shiftKey && e.ctrlKey && e.which == 86) // ctrl+shift+v
-            {
-                var text = xtk.clipboard.getText();
-                browser.contentWindow.wrappedJSObject.butterfly.write(text);
-            }
-        });
-    };
-
-    this.loadStyleSheet = () =>
-    {
-        NetUtil.asyncFetch("chrome://koterminal/skin/terminal.css", function(inputStream, status)
-        {
-            // Validate result
-            if ( ! Components.isSuccessCode(status))
-            {
-                return;
-            }
-
-            var css = NetUtil.readInputStreamToString(inputStream, inputStream.available());
-            var style = browser.contentDocument.createElement('style');
-            style.type = 'text/css';
-            style.appendChild(browser.contentDocument.createTextNode(css));
-            browser.contentDocument.getElementsByTagName("head")[0].appendChild(style)
-
-        }.bind(this));
-    }
 };
 
-window.addEventListener("workspace_restored", ko.terminal.init.bind(ko.terminal));
+window.addEventListener("komodo-ui-started", ko.terminal.init.bind(ko.terminal));
