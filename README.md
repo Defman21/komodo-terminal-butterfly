@@ -1,3 +1,5 @@
+![Screenshot](screenshot.png)
+
 This adds a tabbed terminal to the bottom panel in Komodo. It is powered by
 butterfly.
 
