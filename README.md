@@ -8,3 +8,7 @@ want to adopt this project.
 
 Current state is operational but likely to contain some bugs. Only works on
 Komodo 10.
+
+# Authors
+
+This addon was originally developed by [Nathan Rijksen](https://github.com/Naatan) and is currently maintained by [Sergey Kislyakov](https://github.com/Defman21)
