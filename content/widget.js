@@ -103,6 +103,11 @@
         });
     };
 
+    this.closeTabs = () =>
+    {
+        $(`tab, tabpanel`, window).remove();
+    };
+
     this.loadStyleSheet = (browser) =>
     {
         var style = browser.contentDocument.createElement('link');
@@ -112,5 +117,5 @@
     };
     
     window.addEventListener("load", this.init);
-    
+    window.addEventListener("beforeunload", this.closeTabs);
 })();
