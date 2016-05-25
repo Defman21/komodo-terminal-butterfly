@@ -57,7 +57,7 @@
         
         var selected = !! tab.attr("selected");
         
-        $(`tab:nth-child(${index}), tabpanel:nth-child(${index})`, window).remove();
+        $(`tab:nth-child(${index + 1}), tabpanel:nth-child(${index + 1})`, window).remove();
         
         if (tabs == 2)
         {
@@ -66,7 +66,9 @@
         
         if (selected)
         {
-            $("tabbox", window).element().selectedIndex = index - 1;
+            var selectedIndex = index;
+            if (index > 0) selectedIndex = index - 1;
+            $("tabbox", window).element().selectedIndex = selectedIndex;
         }
         
         e.stopPropagation();
