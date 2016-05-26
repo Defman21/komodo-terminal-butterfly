@@ -16,12 +16,13 @@ ko.terminal = new function()
     {
         var error = err.split(/\r?\n/);
         error = error[error.length - 2];
-        require('notify').send(`Butterfly: ${error}`, {priority: "error"});
+        require('notify').send(`Terminal: ${error}`, {priority: "error", category: "terminal"});
         log.error(err);
     };
 
     this.init = () =>
     {
+        require('notify/categories').register('terminal', {label: "Terminal"});
         var koFile = require("ko/file");
         var koDirSvc = Cc["@activestate.com/koDirs;1"].getService();
         var pythonExe = koDirSvc.pythonExe;
