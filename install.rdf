@@ -5,9 +5,10 @@
         <em:unpack>true</em:unpack>
         <em:id>komodo_terminal@activestate.com</em:id>
         <em:name>Komodo Terminal</em:name>
-        <em:version>1.0</em:version>
+        <em:version>1.0.1</em:version>
         <em:description>Docks the Butterfly terminal in Komodo</em:description>
         <em:creator>Nathan Rijksen</em:creator>
+        <em:contributor>Sergey Kislyakov</em:contributor>
         <em:homepageURL>http://komodo.activestate.com/addons/komodo-terminal/</em:homepageURL>
         <em:iconURL>chrome://koterminal/skin/icon.png</em:iconURL>
         <em:type>2</em:type> <!-- type=extension --> 
