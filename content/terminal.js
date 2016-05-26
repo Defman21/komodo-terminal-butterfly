@@ -11,6 +11,14 @@ ko.terminal = new function()
     var log = require("ko/logging").getLogger("ko-terminal");
     
     this.process = process;
+    
+    this.onerror = (err) =>
+    {
+        var error = err.split(/\r?\n/);
+        error = error[error.length - 2];
+        require('notify').send(`Butterfly: ${error}`, {priority: "error"});
+        log.error(err);
+    };
 
     this.init = () =>
     {
@@ -41,7 +49,7 @@ ko.terminal = new function()
         process = shell.run(pythonExe, [koFile.join(butterflyDir, 'butterfly.server.py'), '--unsecure'], {cwd: butterflyDir, env: env});
         
         process.stdout.on('data', log.debug);
-        process.stderr.on('data', log.error);
+        process.stderr.on('data', this.onerror);
 
     };
 };
