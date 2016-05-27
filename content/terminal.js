@@ -12,6 +12,8 @@ ko.terminal = new function()
     
     this.process = process;
     
+    this.commands = {};
+    
     this.onerror = (err) =>
     {
         var error = err.split(/\r?\n/);

@@ -13,6 +13,17 @@
 
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     
+    <script src="chrome://koterminal/content/commands.js"
+            type="application/x-javascript;version=1.7"/>
+    
+    <menupopup id="menutab">
+        <menuitem label="Change CWD to path of current buffer" oncommand="ko.terminal.commands.cwdCurrentPath(event)" />
+        <menuitem label="Change CWD to path of current project" oncommand="ko.terminal.commands.cwdCurrentProject(event)" />
+        <menuseparator/>
+        <menuitem label="Insert path of current buffer" oncommand="ko.terminal.commands.insertCurrentPath(event)" />
+        <menuitem label="Insert path of current project" oncommand="ko.terminal.commands.insertCurrentProject(event)" />
+    </menupopup>
+    
     <script src="chrome://koterminal/content/widget.js"
             type="application/x-javascript;version=1.7"/>
     

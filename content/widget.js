@@ -8,6 +8,7 @@
     const { NetUtil } = Cu.import("resource://gre/modules/NetUtil.jsm", {});
     var $ = require("ko/dom");
     var tabNo = 1;
+    var menutab = $("#menutab", window);
     
     this.init = () =>
     {
@@ -21,6 +22,11 @@
         var tabs = $("tab", window).length + 1;
         var browser = $("<browser/>").attr({src: "http://localhost:57575/", "flex": 1, style: "width: 100%"});
         var tab = $("<tab/>").attr({id: "tab" + tabNo, linkedpanel: "tabpanel" + tabNo, label: 'Terminal #' + tabNo});
+        
+        tab.on('contextmenu', (e) => {
+            menutab.element().openPopup(e.target, "after_pointer", 0, 0, true, false, e);
+            console.log("Opened menutab for " + e.target.toString());
+        });
         
         $("tabs", window).append(tab);
         $("tabpanels", window).append(
@@ -98,7 +104,7 @@
             else if (e.shiftKey && e.ctrlKey && e.which == 86) // ctrl+shift+v
             {
                 var text = xtk.clipboard.getText();
-                browser.contentWindow.wrappedJSObject.butterfly.write(text);
+                browser.contentWindow.wrappedJSObject.butterfly.send(text);
             }
         });
     };
