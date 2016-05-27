@@ -17,8 +17,16 @@ ko.terminal = new function()
     this.onerror = (err) =>
     {
         var error = err.split(/\r?\n/);
+        var level = "error";
         error = error[error.length - 2];
-        require('notify').send(`Terminal: ${error}`, {priority: "error", category: "terminal"});
+        if (error.indexOf("[Errno 98]") != -1) {
+            error = "Butterfly server is already running";
+            level = "warning";
+        } else if (error.indexOf("is ready") != -1) {
+            error = "Butterfly is ready!";
+            level = "info";
+        }
+        require('notify').send(`Terminal: ${error}`, {priority: level, category: "terminal"});
         log.error(err);
     };
 
