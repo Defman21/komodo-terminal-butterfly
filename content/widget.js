@@ -8,10 +8,12 @@
     const { NetUtil } = Cu.import("resource://gre/modules/NetUtil.jsm", {});
     var $ = require("ko/dom");
     var tabNo = 1;
-    var menutab = $("#menutab", window);
+    var menutab;
     
     this.init = () =>
     {
+        menutab = $("#menutab", window);
+        
         this.newTab();
         
         $("tabs", window).element().newTabButton.addEventListener("command", this.newTab);
@@ -120,6 +122,48 @@
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', 'less://koterminal/skin/terminal.less');
         browser.contentDocument.getElementsByTagName("head")[0].appendChild(style);
+    };
+    
+    var insertIntoButterfly = (text) =>
+    {
+        var panel = $("tab[selected=true]", window).attr('linkedpanel');
+        panel = $(`#${panel}`, window).element();
+        var browser = $(`browser`, panel).element();
+        browser.contentWindow.wrappedJSObject.butterfly.send(text);
+    };
+    
+    var setCWD = (string) =>
+    {
+        insertIntoButterfly(`cd ${string} \&\& clear`);
+        insertIntoButterfly('\015');
+    };
+    
+    this.insertCurrentPath = () => {
+        insertIntoButterfly(require('ko/views').current().file.dirName);
+    };
+    
+    this.insertCurrentProject = () => {
+        var partSvc = Cc["@activestate.com/koPartService;1"].getService(Ci.koIPartService);
+        if (partSvc.currentProject === null) {
+            require('notify').send(`Terminal: You don't have any project opened`, {priority: "error", category: "terminal"});
+            return false;
+        }
+        var project = partSvc.currentProject.liveDirectory;
+        insertIntoButterfly(project);
+    };
+    
+    this.cwdCurrentPath = () => {
+        setCWD(require('ko/views').current().file.dirName);
+    };
+    
+    this.cwdCurrentProject = () => {
+    var partSvc = Cc["@activestate.com/koPartService;1"].getService(Ci.koIPartService);
+        if (partSvc.currentProject === null) {
+            require('notify').send(`Terminal: You don't have any project opened`, {priority: "error", category: "terminal"});
+            return false;
+        }
+        var project = partSvc.currentProject.liveDirectory;
+        setCWD(project);
     };
     
     window.addEventListener("load", this.init);
