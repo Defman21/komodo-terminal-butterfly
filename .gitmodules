@@ -1,21 +1,28 @@
 [submodule "pylib/backports_abc"]
 	path = pylib/backports_abc
 	url = https://github.com/cython/backports_abc.git
+    ignore = dirty
 [submodule "pylib/python-backports.ssl-match-hostname"]
 	path = pylib/python-backports.ssl-match-hostname
 	url = https://github.com/sbadia/python-backports.ssl-match-hostname.git
+    ignore = dirty
 [submodule "pylib/butterfly"]
 	path = pylib/butterfly
 	url = https://github.com/Naatan/butterfly.git
+    ignore = dirty
 [submodule "pylib/python-certifi"]
 	path = pylib/python-certifi
 	url = https://github.com/certifi/python-certifi.git
+    ignore = dirty
 [submodule "pylib/singledispatch"]
 	path = pylib/singledispatch
 	url = https://github.com/ambv/singledispatch.git
+    ignore = dirty
 [submodule "pylib/tornado"]
 	path = pylib/tornado
 	url = https://github.com/tornadoweb/tornado.git
+    ignore = dirty
 [submodule "pylib/tornado-systemd"]
 	path = pylib/tornado-systemd
 	url = https://github.com/paradoxxxzero/tornado-systemd.git
+    ignore = dirty
