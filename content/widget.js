@@ -134,7 +134,7 @@
     
     var setCWD = (string) =>
     {
-        insertIntoButterfly(`cd ${string} \&\& clear`);
+        insertIntoButterfly(`cd ${string}`);
         insertIntoButterfly('\015');
     };
     
