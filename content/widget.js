@@ -143,7 +143,7 @@
     };
     
     this.insertCurrentPlaces = () => {
-        var path = ko.places.getDirectory().substr(7);
+        var path = ko.uriparse.URIToLocalPath(ko.places.getDirectory());
         insertIntoButterfly(path);
     };
     
@@ -152,7 +152,7 @@
     };
     
     this.cwdCurrentPlaces = () => {
-        var path = ko.places.getDirectory().substr(7);
+        var path = ko.uriparse.URIToLocalPath(ko.places.getDirectory());
         setCWD(path);
     };
     
