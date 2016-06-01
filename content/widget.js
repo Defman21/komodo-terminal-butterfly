@@ -142,28 +142,18 @@
         insertIntoButterfly(require('ko/views').current().file.dirName);
     };
     
-    this.insertCurrentProject = () => {
-        var partSvc = Cc["@activestate.com/koPartService;1"].getService(Ci.koIPartService);
-        if (partSvc.currentProject === null) {
-            require('notify').send(`Terminal: You don't have any project opened`, {priority: "error", category: "terminal"});
-            return false;
-        }
-        var project = partSvc.currentProject.liveDirectory;
-        insertIntoButterfly(project);
+    this.insertCurrentPlaces = () => {
+        var path = ko.places.getDirectory().substr(7);
+        insertIntoButterfly(path);
     };
     
     this.cwdCurrentPath = () => {
         setCWD(require('ko/views').current().file.dirName);
     };
     
-    this.cwdCurrentProject = () => {
-    var partSvc = Cc["@activestate.com/koPartService;1"].getService(Ci.koIPartService);
-        if (partSvc.currentProject === null) {
-            require('notify').send(`Terminal: You don't have any project opened`, {priority: "error", category: "terminal"});
-            return false;
-        }
-        var project = partSvc.currentProject.liveDirectory;
-        setCWD(project);
+    this.cwdCurrentPlaces = () => {
+        var path = ko.places.getDirectory().substr(7);
+        setCWD(path);
     };
     
     window.addEventListener("load", this.init);
