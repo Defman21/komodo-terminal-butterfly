@@ -27,7 +27,6 @@
         
         tab.on('contextmenu', (e) => {
             menutab.element().openPopup(e.target, "after_pointer", 0, 0, true, false, e);
-            console.log("Opened menutab for " + e.target.toString());
         });
         
         $("tabs", window).append(tab);
@@ -154,6 +153,14 @@
     this.cwdCurrentPlaces = () => {
         var path = ko.uriparse.URIToLocalPath(ko.places.getDirectory());
         setCWD(path);
+    };
+    
+    this.renameTab = (e) => {
+        var tab = e.target.parentNode.anchorNode;
+        var name = require('ko/dialogs').prompt("Enter the name: ");
+        if (name) {
+            tab.label = name;
+        }
     };
     
     window.addEventListener("load", this.init);

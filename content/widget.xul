@@ -14,11 +14,12 @@
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     
     <menupopup id="menutab">
-        <menuitem label="Change CWD to path of current buffer" oncommand="cwdCurrentPath(event)" />
-        <menuitem label="Change CWD to path of current Places directory" oncommand="cwdCurrentPlaces(event)" />
+        <menuitem label="Rename" oncommand="renameTab(event);" />
+        <menuitem label="Change CWD to path of current buffer" oncommand="cwdCurrentPath(event);" />
+        <menuitem label="Change CWD to path of current Places directory" oncommand="cwdCurrentPlaces(event);" />
         <menuseparator/>
-        <menuitem label="Insert path of current buffer" oncommand="insertCurrentPath(event)" />
-        <menuitem label="Insert path of current Places directory" oncommand="insertCurrentPlaces(event)" />
+        <menuitem label="Insert path of current buffer" oncommand="insertCurrentPath(event);" />
+        <menuitem label="Insert path of current Places directory" oncommand="insertCurrentPlaces(event);" />
     </menupopup>
     
     <script src="chrome://koterminal/content/widget.js"
