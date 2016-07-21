@@ -3,10 +3,10 @@
 This adds a tabbed terminal to the bottom panel in Komodo. It is powered by
 butterfly.
 
-Current state is operational but likely to contain some bugs. Only works on
+Current state is operational but likely to contain some bugs. Only works in
 Komodo 10 [and Unix systems. (Linux & OSX)](https://github.com/Defman21/komodo-terminal-butterfly/issues/1#issuecomment-221905818)
 
-For Windows users, you should use cygwin to get this add-on working.
+For Windows users, you can use cygwin to make this add-on working.
 
 # Customizing Terminal
 
