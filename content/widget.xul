@@ -13,8 +13,11 @@
 
 <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     
-    <menupopup id="menutab">
+    <menupopup id="menupopup">
         <menuitem label="Rename" oncommand="renameTab(event);" />
+        <menuitem id="pin-menuitem" label="Pin" oncommand="handlePinEvent(event);" />
+        <menuitem id="changecmd-menuitem" label="Change command" oncommand="handleChangeCommandEvent(event);" />
+        <menuseperator id="pin_placeholder"/>
         <menuitem label="Change CWD to path of current buffer" oncommand="cwdCurrentPath(event);" />
         <menuitem label="Change CWD to path of current Places directory" oncommand="cwdCurrentPlaces(event);" />
         <menuseparator/>
