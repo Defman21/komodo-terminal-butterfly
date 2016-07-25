@@ -243,13 +243,15 @@
     this.handleChangeCommandEvent = (e) => {
         var tab = e.target.parentNode.anchorNode;
         var id = tab.id;
+        var command = $(tab).attr("_command");
+        if (command === "null") command = "";
         var _tab = {
             id,
             label: tab.label,
-            command: ""
+            command
         };
-        _tab.command = require('ko/dialogs').prompt("Enter the command to execute when the tab is restored: ");
-        tab.command = _tab.command;
+        _tab.command = require('ko/dialogs').prompt("Enter the command to execute when the tab is restored: ", {value: command});
+        $(tab).attr("_command",_tab.command);
         this._updatePinnedTab(_tab);
     };
     

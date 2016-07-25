@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+echo "Start building..."
+koext build --unjarred -d ./ -o ./builds/
+echo "Removing build/"
+rm -rf build/
